@@ -1,0 +1,570 @@
+/* ============================================================
+   ABOUT PAGE
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   PROFILE / INTRO
+   ------------------------------------------------------------ */
+
+.about-hero {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+  gap: 3rem;
+  align-items: start;
+
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+}
+
+
+.about-profile {
+  text-align: center;
+}
+
+
+.about-avatar {
+  display: block;
+
+  width: 180px;
+  max-width: 100%;
+  height: auto;
+
+  margin: 0 auto;
+
+  border-radius: 8px;
+}
+
+
+/* Social icons directly underneath profile photograph */
+
+.about-social {
+  margin-top: 1.25rem;
+}
+
+
+
+.about-social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 0.8rem;
+}
+
+
+/* Prevent images from custom socials becoming huge */
+
+.about-social img {
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+
+  object-fit: contain;
+}
+
+
+.about-intro {
+  min-width: 0;
+}
+
+
+.about-name {
+  margin-top: 0;
+  margin-bottom: 0.35rem;
+
+  font-size: 2.8rem;
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+
+.about-subtitle {
+  margin-bottom: 1.5rem;
+
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+
+.about-subtitle p {
+  margin: 0;
+}
+
+
+.about-copy {
+  font-size: 1rem;
+  line-height: 1.75;
+  text-align: justify;
+}
+
+
+.about-copy p {
+  margin-top: 0;
+  margin-bottom: 1.15rem;
+}
+
+.about-email {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.about-email a {
+  color: var(--global-theme-color);
+  text-decoration: none;
+}
+
+.about-email a:hover {
+  text-decoration: underline;
+}
+
+/* ------------------------------------------------------------
+   RESEARCH NAVIGATION
+   ------------------------------------------------------------ */
+
+.research-subnav {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 0.75rem;
+
+  margin-top: 0;
+  margin-bottom: 3.5rem;
+
+  padding-bottom: 1.5rem;
+
+  border-bottom: 1px solid var(--global-divider-color);
+}
+
+
+.research-subnav a {
+  display: inline-block;
+
+  padding: 0.5rem 0.9rem;
+
+  border: 1px solid var(--global-divider-color);
+  border-radius: 6px;
+
+  color: var(--global-text-color);
+  text-decoration: none;
+
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease,
+    background 0.15s ease;
+}
+
+
+.research-subnav a:hover {
+  border-color: var(--global-theme-color);
+  color: var(--global-theme-color);
+
+  text-decoration: none;
+}
+
+
+
+/* ------------------------------------------------------------
+   RESEARCH SECTIONS
+   ------------------------------------------------------------ */
+
+.research-section {
+  /*
+   * This counter is deliberately reset once per research section.
+   * Multiple {% bibliography %} calls will therefore continue:
+   *
+   * 1.
+   * 2.
+   * 3.
+   *
+   * instead of:
+   *
+   * 1.
+   * 1.
+   * 1.
+   */
+  counter-reset: research-reference;
+
+  margin-top: 3.5rem;
+  margin-bottom: 5rem;
+
+  scroll-margin-top: 100px;
+}
+
+
+.research-section h2 {
+  margin-top: 0;
+  margin-bottom: 1.8rem;
+
+  font-size: 2rem;
+  line-height: 1.25;
+}
+
+
+
+/* ------------------------------------------------------------
+   MATERIALS SCREENING: IMAGE + TEXT GRID
+   ------------------------------------------------------------ */
+
+.research-grid {
+  display: grid;
+
+  grid-template-columns: 270px minmax(0, 1fr);
+
+  gap: 2.2rem;
+
+  align-items: start;
+
+  margin-bottom: 1.8rem;
+}
+
+
+.research-image {
+  min-width: 0;
+}
+
+
+.research-cover {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  border-radius: 6px;
+}
+
+
+.research-text {
+  min-width: 0;
+  font-size: 1rem;
+  line-height: 1.7;
+  text-align: justify;
+}
+
+
+.research-text p {
+  margin-top: 0;
+  margin-bottom: 1.15rem;
+}
+
+
+
+/* ------------------------------------------------------------
+   AFLOW SECTION: FLOATING IMAGE + WRAPPED TEXT
+   ------------------------------------------------------------ */
+
+.research-flow {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.research-float-image {
+  width: 300px;
+  max-width: 100%;
+
+  margin:
+    0
+    auto
+    1.5rem
+    auto;
+
+  text-align: center;
+}
+
+.research-float-image .research-cover {
+  width: 100%;
+  height: auto;
+}
+
+.research-flow > p {
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+
+  text-align: justify !important;
+  text-justify: inter-word;
+}
+
+
+
+/* ------------------------------------------------------------
+   BIBLIOGRAPHY
+   ------------------------------------------------------------ */
+
+.research-refs {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+
+/*
+ * Jekyll Scholar creates a separate <ol class="bibliography">
+ * for every {% bibliography %} call.
+ *
+ * We therefore remove its native numbering and use one CSS
+ * counter across all bibliography blocks in the section.
+ */
+
+.research-refs ol.bibliography {
+  list-style: none;
+
+  margin: 0;
+  padding: 0;
+}
+
+
+.research-refs ol.bibliography > li {
+  position: relative;
+
+  counter-increment: research-reference;
+
+  margin: 0 0 1rem 0;
+
+  padding:
+    1rem
+    1.25rem
+    1rem
+    3.5rem;
+
+  border-left: 3px solid var(--global-theme-color);
+  border-radius: 5px;
+
+  line-height: 1.55;
+
+  background: var(--global-card-bg-color);
+}
+
+
+.research-refs ol.bibliography > li::before {
+  content: counter(research-reference) ".";
+
+  position: absolute;
+
+  left: 1rem;
+  top: 1rem;
+
+  font-weight: 700;
+
+  color: var(--global-theme-color);
+}
+
+
+/* Remove possible browser-generated marker */
+
+.research-refs ol.bibliography > li::marker {
+  content: "";
+}
+
+
+/* Publication title */
+
+.research-refs .title {
+  font-weight: 600;
+}
+
+
+/* Authors */
+
+.research-refs .author {
+  margin-top: 0.25rem;
+
+  line-height: 1.45;
+}
+
+
+/* Journal / year line */
+
+.research-refs .periodical {
+  margin-top: 0.2rem;
+
+  opacity: 0.9;
+}
+
+
+/*
+ * Remove excessive bottom spacing that al-folio's normal
+ * publication page styling can introduce.
+ */
+
+.research-refs .row {
+  margin: 0;
+}
+
+
+.research-refs .abbr {
+  margin-bottom: 0.35rem;
+}
+
+
+/*
+ * Buttons such as DOI / PDF / BibTeX, should the bibliography
+ * template generate them.
+ */
+
+.research-refs .links {
+  margin-top: 0.45rem;
+}
+
+
+.research-refs .links a {
+  display: inline-block;
+
+  margin-right: 0.35rem;
+  margin-bottom: 0.25rem;
+}
+
+
+
+/* ------------------------------------------------------------
+   FOLLOW-UP TEXT
+   ------------------------------------------------------------ */
+
+.research-followup {
+  margin-top: 2.25rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+  text-align: justify;
+}
+
+
+
+/* ------------------------------------------------------------
+   SOFTWARE
+   ------------------------------------------------------------ */
+
+.aflow-software-card .software-title {
+  display: none;
+}
+
+.aflow-software-card .software-desc:empty {
+  display: none;
+}
+
+.aflow-software-card {
+  margin-top: 0.75rem;
+
+  display: flex;
+  justify-content: center;
+}
+
+.aflow-software-card .software-card {
+  text-align: center;
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE
+   ------------------------------------------------------------ */
+
+@media (max-width: 768px) {
+
+  .about-hero {
+    grid-template-columns: 1fr;
+
+    gap: 1.75rem;
+
+    margin-bottom: 3rem;
+  }
+
+
+  .about-profile {
+    text-align: left;
+  }
+
+
+  .about-avatar {
+    width: 150px;
+
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+
+  .about-social {
+    justify-content: flex-start;
+  }
+
+
+  .about-name {
+    font-size: 2.2rem;
+  }
+
+
+  .research-grid {
+    grid-template-columns: 1fr;
+
+    gap: 1.5rem;
+  }
+
+
+  .research-image {
+    max-width: 300px;
+  }
+
+
+  .research-float-image {
+    float: none;
+
+    width: 100%;
+    max-width: 300px;
+
+    margin:
+      0
+      0
+      1.5rem
+      0;
+   text-align: center;
+  }
+
+  .research-float-image figure {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+  .research-section h2 {
+    font-size: 1.7rem;
+  }
+
+
+  .research-refs ol.bibliography > li {
+    padding-left: 3rem;
+  }
+
+}
+
+/* ============================================================
+   VISIBLE LIGHT / DARK MODE BUTTON
+   ============================================================ */
+#theme-toggle-wrapper {
+  position: fixed;
+  top: 0.45rem;
+  right: 1rem;
+  z-index: 99999;
+}
+
+#page-theme-toggle {
+  width: 2rem;
+  height: 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: transparent;
+  color: var(--global-text-color);
+
+  font-size: 1.05rem;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+#page-theme-toggle:hover {
+  color: var(--global-theme-color);
+  background: rgba(127, 127, 127, 0.08);
+}
+

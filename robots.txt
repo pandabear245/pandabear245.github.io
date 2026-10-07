@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://pandabear245.github.io/al-folio/sitemap.xml
+Sitemap: https://pandabear245.github.io/sitemap.xml
