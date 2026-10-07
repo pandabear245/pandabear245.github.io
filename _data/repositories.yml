@@ -1,14 +1,7 @@
-github_users:
-  - torvalds
-  - alshedivat
-
-repo_description_lines_max: 2
-
 github_repos:
-  - alshedivat/al-folio
-  - jekyll/jekyll
-  - twbs/bootstrap
-  - jquery/jquery
-  - FortAwesome/Font-Awesome
-  - mathjax/MathJax
-  - jpswalsh/academicons
+  - name: aflow-org/aflow
+    logo: /assets/img/aflow.png
+    show_name: false
+    stars:
+    description: The Automatic-Flow (AFLOW) framework is a class of interconnected software tools designed for high-throughput materials discovery, leveraging both first-principles quantum mechanical calculations using density functional theory (DFT), and data informatics as a screening strategy.
+    commits:
