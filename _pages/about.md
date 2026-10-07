@@ -1,126 +1,388 @@
 ---
-layout: about
+layout: default
 title: About
 permalink: /
-subtitle: Postdoctoral Researchers @ [TUD](https://theory.chm.tu-dresden.de/members.shtml?name=ccer) & [HZDR](https://www.hzdr.de/db/Cms?pOid=73041&pNid=0) & [CASUS](https://www.casus.science/theory-of-complex-systems/) 
+subtitle: Postdoctoral Researcher @ [TUD](https://theory.chm.tu-dresden.de/members.shtml?name=ccer) & [HZDR](https://www.hzdr.de/db/Cms?pOid=73041&pNid=0) & [CASUS](https://www.casus.science/theory-of-complex-systems/)
 
 profile:
-  align: left
   image: profile_pic.jpg
-  image_circular: false # crops the image to make it circular
-  more_info: >
 
-social: true # includes social icons in the about header
+social: true
 ---
 
-<div class="about-layout" id="about">
-  <div class="about-left">
-    {% assign profile_image_path = page.profile.image | prepend: 'assets/img/' %}
-    <img class="about-avatar" src="{{ profile_image_path | relative_url }}" alt="{{ page.profile.image }}" loading="eager">
+<link rel="stylesheet" href="{{ '/assets/css/about.css' | relative_url }}">
+
+<div id="theme-toggle-wrapper">
+  <button id="page-theme-toggle" type="button" title="Toggle light/dark theme" aria-label="Toggle light/dark theme">
+    <span id="page-theme-icon">◐</span>
+  </button>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const button = document.getElementById("page-theme-toggle");
+  const icon = document.getElementById("page-theme-icon");
+
+  function updateIcon() {
+    const theme = document.documentElement.getAttribute("data-theme");
+
+    if (theme === "dark") {
+      icon.textContent = "☀";
+      button.title = "Switch to light mode";
+    } else {
+      icon.textContent = "☾";
+      button.title = "Switch to dark mode";
+    }
+  }
+
+  button.addEventListener("click", function () {
+    const theme = document.documentElement.getAttribute("data-theme");
+
+    if (typeof setThemeSetting === "function") {
+      setThemeSetting(theme === "dark" ? "light" : "dark");
+    }
+  });
+
+  updateIcon();
+
+  const observer = new MutationObserver(updateIcon);
+
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["data-theme"]
+  });
+});
+</script>
+
+<!-- ============================================================
+     ABOUT
+     ============================================================ -->
+
+<section class="about-hero" id="about">
+
+<aside class="about-profile">
+
+  {% assign profile_image_path = page.profile.image | prepend: 'assets/img/' %}
+
+  <img
+    class="about-avatar"
+    src="{{ profile_image_path | relative_url }}"
+    alt="Chen Chen Er"
+    loading="eager"
+  >
+
+  {% if page.social %}
+    <div class="about-social">
+      {% social_links %}
+    </div>
+  {% endif %}
+
+  {% if site.email %}
+    <div class="about-email">
+
+      <div>
+        <a href="mailto:{{ site.email | encode_email }}">
+          {{ site.email }}
+        </a>
+      </div>
+
+      {% if site.additional_emails %}
+        {% for email in site.additional_emails %}
+          <div>
+            <a href="mailto:{{ email | encode_email }}">
+              {{ email }}
+            </a>
+          </div>
+        {% endfor %}
+      {% endif %}
+
+    </div>
+  {% endif %}
+
+</aside>
+
+  <div class="about-intro">
+
     <h1 class="about-name">
       {% if site.title == 'blank' %}
-        <span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }}
+        {{ site.first_name }}
+        {% if site.middle_name %}
+          {{ site.middle_name }}
+        {% endif %}
         {{ site.last_name }}
       {% else %}
         {{ site.title }}
       {% endif %}
     </h1>
-    <p class="about-subtitle">{{ page.subtitle }}</p>
-    {% if site.email %}
-      <p class="about-email">
-        <a href="mailto:{{ site.email | encode_email }}">{{ site.email }}</a>
+
+    <div class="about-subtitle">
+      {{ page.subtitle | markdownify }}
+    </div>
+
+    <div class="about-copy">
+
+      <p>
+        Computational chemist specializing in materials science. My main research
+        interests focus on autonomous materials design for energy storage and
+        conversion applications.
       </p>
-    {% endif %}
-    {% if page.social %}
-      <div class="social">
-        <div class="contact-icons">{% include social.liquid %}</div>
-        <div class="contact-note">{{ site.contact_note }}</div>
-      </div>
-    {% endif %}
+
+      <p>
+        I am currently based at the Chair of Theoretical Chemistry at
+        TU Dresden, Germany, as a postdoctoral research fellow under the
+        supervision of Dr. Rico Friedrich and Prof. Thomas Heine, with research
+        activities at HZDR/CASUS.
+      </p>
+
+      <p>
+        I completed my PhD in Chemical Engineering at Monash University in
+        July 2023 and subsequently worked as a postdoctoral research fellow
+        in Singapore from 2023 to 2024. My current research focuses on modelling
+        and understanding confined high-entropy disordered materials and their
+        interfaces.
+      </p>
+
+    </div>
+
   </div>
-  <div class="about-right">
-<div class="about-copy" markdown="1">
 
-Computational Chemist specializing in materials science. Dr. Chen Chen Er's main research interest is
-on autonomous materials design for energy storage and conversion applications. He is currently based in the Chair of Theoretical Chemistry (Prof. Thomas Heine) at TU Dresden, Germany, as a postdoctoral research fellow under the direct supervision of Dr. Rico Friedrich and Prof. Thomas D. Kühne. 
+</section>
 
-He completed his doctoral studies in Chemical Engineering at Monash University in July 2023 and worked as a postdoctoral research fellow in Singapore from 2023 to 2024.  His current research is on modelling and understanding confined high-entropy disordered materials towards designing novel device interfaces.
 
-</div>
-  </div>
-</div>
+<!-- ============================================================
+     RESEARCH NAVIGATION
+     ============================================================ -->
 
-<span id="research" class="section-anchor"></span>
+<nav class="research-subnav" aria-label="Research sections">
 
-<nav class="research-subnav">
-  <a href="#catalysis">Materials Screening and Design</a>
-  <a href="#complex-chemically-disordered-systems">Development of High-throughput Tools</a>
+  <a href="#materials-screening">
+    Materials Screening and Design
+  </a>
+
+  <a href="#high-throughput-tools">
+    Development of High-throughput Tools
+  </a>
+
 </nav>
 
-<div class="research-copy" markdown="1">
 
-### Materials Screening and Design
+<!-- ============================================================
+     MATERIALS SCREENING AND DESIGN
+     ============================================================ -->
 
-<div class="row">
-    <div class="col-md-4 mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/rp_graphic_abstract.png" class="img-fluid rounded z-depth-1 research-cover" alt="Computational materials screening cover" zoomable=true %}
-    </div>
-<div class="row">
-    <div class="col-md-8 mt-3 mt-md-0">
-        <p>
-              **Energy conversion and storage using renewable energy technologies**. Processes including the conversion into energy dense carriers (i.e., hydrogen and synthetic fuels), the storage in batteries, the photovoltaic generation of electric power, are currently either inefficient or not stable enough, or require rare/toxic materials. My goal is to specifically investigates the bottleneck in these processes at the surfaces and interfaces, for which I then apply high-throughput modelling and machine learning approaches for guidance in experimental works. With the help of these techniques (and high-performance computing infrastructure), I am able to bridge many orders of magnitude and study these processes from the detailed elementary reactions.
-        </p>
-    </div>
+<section
+  class="research-section"
+  id="materials-screening"
+>
+
+  <h2>Catalysis</h2>
+
+  <div class="research-grid">
+
+<div class="research-image">
+
+  <a
+    href="https://doi.org/10.1021/acs.chemrev.1c00068"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="research-image-link"
+  >
+    <img
+      src="{{ 'assets/img/rp_graphic_abstract.png' | relative_url }}"
+      class="research-cover"
+      alt="Computational materials screening"
+      loading="eager"
+    >
+  </a>
+
 </div>
 
-<div class="row mt-2">
-    <div class="col-md-12">
-        <div class="research-refs"> 
-            {% bibliography --query @*[key=er2025interpretable]* --group_by none --template bib_research_ref %}
-            {% bibliography --query @*[key=er2025unveiling]* --group_by none --template bib_research_ref %}
-            {% bibliography --query @*[key=er2022allotropes]* --group_by none --template bib_research_ref %}
-        </div>
-    </div>
-</div>
+    <div class="research-text">
 
-<div class="row mt-3">
-    <div class="col-md-12 mt-3 mt-md-0">
-        <p>
-            With my expertise, I offer theoretical insights and maintain sustainable collaborative works with my experimental partners.
-        </p>
-    </div>
-</div>
+      <p>
+        <strong>
+          Energy conversion and storage using renewable energy technologies.
+        </strong>
+        Processes including conversion into energy-dense carriers
+        (<i>e.g.</i>, hydrogen and synthetic fuels), energy storage in batteries,
+        and photovoltaic generation of electric power are currently either
+        inefficient, insufficiently stable, or reliant on rare or toxic
+        materials.
+      </p>
 
-<div class="row mt-2">
-    <div class="col-md-12">
-        <div class="research-refs"> 
-            {% bibliography --query @*[key=loh2026nanostructured]* --group_by none --template bib_research_ref %}
-            {% bibliography --query @*[key=sinha2026dynamic]* --group_by none --template bib_research_ref %}
-            {% bibliography --query @*[key=tang2023two]* --group_by none --template bib_research_ref %}
-        </div>
-    </div>
-</div>
+      <p>
+        My research focuses on identifying bottlenecks in these processes at
+        surfaces and interfaces. I apply high-throughput modelling and
+        machine-learning approaches to provide guidance for experimental work.
+        Together with high-performance computing infrastructure, these methods
+        allow me to investigate materials and reaction processes across multiple
+        scales, down to their elementary mechanisms.
+      </p>
 
-### Development of High-throughput Tools
-
-<div class="row">
-    <div class="col-md-4 mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/aflow_logo.png" class="img-fluid rounded z-depth-1 research-cover" alt="AFLOW" zoomable=true %}
     </div>
-    <div class="col-md-8 mt-3 mt-md-0">
-        <p>
-            The need for improved functionalities in extreme environments is fueling interest in high entropy materials, particularly of ceramics. While some compositions can be stabilized by maximizing entropy, still the search for new high-entropy systems is mostly performed using trial-and-error and some intuition. 
-            Therefore effective computational discovery is challenged by the large available configurational space. One of the proposed solution is then to model the chemical disorder using an ensemble of ordered structures (_i.e._, [POCC](https://pubs.acs.org/doi/abs/10.1021/acs.chemmater.6b01449)), effectively capturing the microstates of the system. 
-            The synthesizability of high entropy materials is typically assessed using ideal entropy along with the formation enthalpies from density functional theory, with simplified descriptors (_e.g._, [EFA](https://www.nature.com/articles/s41467-018-07160-7) or 
-            [DEED](https://www.nature.com/articles/s41586-023-06786-y)) or [machine learning methods](https://www.nature.com/articles/s41578-021-00340-w).
-            My goal thus far have been to extend the original POCC implementation for modelling and understanding confined high-entropy materials. The interest in this field are readily apparent. For example, up to nine different transition metals were successfully incorporated into the cation sublattices of [MXene](https://doi.org/10.1126/science.adv4415). The plan is to develop a high-throughput workflow that is 
-            readily available to the community in the [AFLOW](https://aflow.org/) framework developed and maintained by Prof. [Stefano Curtarolo](https://mems.duke.edu/people/stefano-curtarolo/) and his team in Duke University. The manuscript for this work has been submitted and will be updated and shared in the future.
-        <div class="research-refs">
-            {% bibliography --query @*[key=tan2023toward]* --group_by none --template bib_research_ref %}
-        </div>
-    </div>
-</div>
 
-<div class="software-grid">
-    {% include repository/software_card.liquid repository="aflow-org/aflow" %}
-</div>
+  </div>
+
+
+  <div class="research-refs">
+
+    {% bibliography
+      --query @*[key=er2025interpretable]*
+      --group_by none
+    %}
+
+    {% bibliography
+      --query @*[key=er2025unveiling]*
+      --group_by none
+    %}
+
+    {% bibliography
+      --query @*[key=er2022allotropes]*
+      --group_by none
+    %}
+
+  </div>
+
+
+  <p class="research-followup">
+    With my expertise, I provide theoretical insights and maintain long-term
+    collaborations with experimental partners.
+  </p>
+
+
+  <div class="research-refs">
+
+    {% bibliography
+      --query @*[key=loh2026nanostructured]*
+      --group_by none
+    %}
+
+    {% bibliography
+      --query @*[key=sinha2026dynamic]*
+      --group_by none
+    %}
+
+    {% bibliography
+      --query @*[key=tang2023two]*
+      --group_by none
+    %}
+
+  </div>
+
+</section>
+
+
+<!-- ============================================================
+     HIGH-THROUGHPUT TOOLS
+     ============================================================ -->
+<section
+  class="research-section"
+  id="high-throughput-tools"
+>
+
+  <h2>High-entropy Materials</h2>
+
+  <div class="research-flow">
+
+    <div class="research-float-image">
+
+      <a
+        href="https://aflow.org/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="aflow-logo-link"
+      >
+        <img
+          src="{{ 'assets/img/aflow_logo.png' | relative_url }}"
+          class="research-cover"
+          alt="AFLOW"
+          loading="eager"
+        >
+      </a>
+
+      <div class="aflow-software-card">
+        {% include repository/software_card.liquid
+          repository="aflow-org/aflow"
+        %}
+      </div>
+
+    </div>
+
+
+    <p>
+      The need for improved functionalities under extreme environments is
+      driving increasing interest in high-entropy materials, particularly
+      ceramics. Although some compositions can be stabilized through
+      configurational entropy, the discovery of new high-entropy systems
+      remains challenging because of their very large configurational spaces.
+    </p>
+
+    <p>
+      One proposed approach is to represent chemical disorder using an
+      ensemble of ordered structures, as implemented in
+      <a
+        href="https://pubs.acs.org/doi/abs/10.1021/acs.chemmater.6b01449"
+        target="_blank"
+        rel="noopener noreferrer"
+      >POCC</a>,
+      thereby capturing representative microstates of the disordered system.
+    </p>
+
+    <p>
+      The synthesizability of high-entropy materials is commonly assessed
+      using configurational entropy together with formation enthalpies from
+      density functional theory. This has motivated simplified descriptors
+      such as
+      <a
+        href="https://www.nature.com/articles/s41467-018-07160-7"
+        target="_blank"
+        rel="noopener noreferrer"
+      >EFA</a>
+      and
+      <a
+        href="https://www.nature.com/articles/s41586-023-06786-y"
+        target="_blank"
+        rel="noopener noreferrer"
+      >DEED</a>,
+      as well as
+      <a
+        href="https://www.nature.com/articles/s41578-021-00340-w"
+        target="_blank"
+        rel="noopener noreferrer"
+      >machine-learning approaches</a>.
+    </p>
+
+    <p>
+      My current work extends the original POCC methodology toward modelling
+      and understanding confined high-entropy materials. Reduced-dimensional
+      high-entropy systems are particularly interesting because chemical
+      disorder must be considered together with surfaces, interfaces, and
+      structural confinement.
+    </p>
+
+    <p>
+      The broader objective is to develop a high-throughput workflow that can
+      be made available to the community through the
+      <a
+        href="https://aflow.org/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >AFLOW</a>
+      framework developed and maintained by Prof.
+      <a
+        href="https://mems.duke.edu/people/stefano-curtarolo/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Stefano Curtarolo</a>
+      and his team at Duke University.
+    </p>
+
+    <p>
+      The manuscript describing this work has been submitted and will be
+      updated here following publication.
+    </p>
+
+  </div>
+
+
+</section>
