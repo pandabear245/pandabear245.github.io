@@ -5,7 +5,7 @@ permalink: /
 subtitle: Postdoctoral Researcher @ [TUD](https://theory.chm.tu-dresden.de/members.shtml?name=ccer) & [HZDR](https://www.hzdr.de/db/Cms?pOid=73041&pNid=0) & [CASUS](https://www.casus.science/theory-of-complex-systems/)
 
 profile:
-  image: prof_pic.jpg
+  image: profile_pic.jpg
 
 social: true
 ---
