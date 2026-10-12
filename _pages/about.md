@@ -129,9 +129,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
       <p>
         I am currently based at the Chair of Theoretical Chemistry at
-        TU Dresden, Germany, as a postdoctoral research fellow under the
-        supervision of Dr. Rico Friedrich and Prof. Thomas Heine, with research
-        activities at HZDR/CASUS.
+        TU Dresden (headed by Prof. Thomas Heine), Germany, as a postdoctoral research fellow under the
+        supervision of Dr. Rico Friedrich from the AutoMat Group. In parallel, I am also conducting research 
+        activities at HZDR | CASUS under Prof. Thomas D. Kühne.
       </p>
 
       <p>
